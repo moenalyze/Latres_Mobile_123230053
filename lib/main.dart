@@ -9,15 +9,12 @@ import 'routes/app_routes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Hive
   await Hive.initFlutter();
   await Hive.openBox('favorites');
 
-  // Check login status
   final prefs = await SharedPreferences.getInstance();
   final bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
 
-  // Initialize AuthController globally
   Get.put(AuthController(), permanent: true);
 
   runApp(MyApp(isLoggedIn: isLoggedIn));
