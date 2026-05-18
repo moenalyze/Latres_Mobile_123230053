@@ -22,6 +22,9 @@ class MainPage extends StatelessWidget {
         () => BottomNavigationBar(
           currentIndex: _mainController.selectedIndex.value,
           onTap: _mainController.changeIndex,
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.pink,
+          unselectedItemColor: Colors.black38,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

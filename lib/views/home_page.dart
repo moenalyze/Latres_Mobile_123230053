@@ -9,7 +9,15 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('TV Shows')),
+      backgroundColor: const Color(0xFFFDE8E9),
+      appBar: AppBar(
+        title: const Text(
+          'TV Shows',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.pink,
+        elevation: 0,
+      ),
       body: Obx(() {
         if (_homeController.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -34,22 +42,35 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Get.toNamed(Routes.DETAIL, arguments: show.id);
               },
-              child: Card(
-                clipBehavior: Clip.antiAlias,
-                elevation: 4,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.pink.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
-                      child: show.imageUrl != null
-                          ? Image.network(
-                              show.imageUrl!,
-                              fit: BoxFit.cover,
-                            )
-                          : Container(
-                              color: Colors.grey[300],
-                              child: const Icon(Icons.tv, size: 50),
-                            ),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
+                        child: show.imageUrl != null
+                            ? Image.network(
+                                show.imageUrl!,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              )
+                            : Container(
+                                color: Colors.pink.withOpacity(0.05),
+                                child: const Icon(Icons.tv, size: 50, color: Colors.black26),
+                              ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),

@@ -8,13 +8,21 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile')),
+      backgroundColor: const Color(0xFFFDE8E9),
+      appBar: AppBar(
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.pink,
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.account_circle, size: 100, color: Colors.grey),
+            const Icon(Icons.account_circle, size: 100, color: Colors.pink),
             const SizedBox(height: 16),
             Center(
               child: Obx(
@@ -24,23 +32,43 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 32),
-            const Text(
-              'Kesan:',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            const Text(
-              'Praktikum Mobile IF-B seru, aslabnya baik. Bismillah A',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Pesan:',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            const Text(
-              'Semoga aslabnya naik gaji dan sejahtera hidupnya',
-              style: TextStyle(fontSize: 16),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.pink.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Kesan:',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Praktikum Mobile IF-B seru, aslabnya baik. Bismillah A',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Pesan:',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Semoga aslabnya bisa naik gaji dan naik haji',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
             const Spacer(),
             ElevatedButton(

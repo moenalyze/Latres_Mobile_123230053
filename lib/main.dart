@@ -30,18 +30,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'TV Shows Tracker',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF121212),
-        primaryColor: Colors.deepPurpleAccent,
-        colorScheme: const ColorScheme.dark(
-          primary: Colors.deepPurpleAccent,
-          secondary: Colors.deepPurple,
-          surface: Color(0xFF1E1E1E),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.pink,
+          brightness: Brightness.light,
         ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF1E1E1E),
-          elevation: 0,
-        ),
+        scaffoldBackgroundColor: Colors.white,
+        useMaterial3: true,
+        fontFamily: 'sans-serif',
       ),
       initialRoute: isLoggedIn ? Routes.MAIN : Routes.LOGIN,
       getPages: AppPages.pages,
