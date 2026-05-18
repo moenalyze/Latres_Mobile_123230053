@@ -14,12 +14,12 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.account_circle, size: 100, color: Colors.blue),
+            const Icon(Icons.account_circle, size: 100, color: Colors.grey),
             const SizedBox(height: 16),
             Center(
               child: Obx(
                 () => Text(
-                  'Username: ${_authController.username}',
+                  _authController.username,
                   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -30,7 +30,7 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const Text(
-              'Praktikum Mobile IF-B di UPNVYK sangat berkesan dan seru!',
+              'Praktikum Mobile IF-B seru, aslabnya baik. Bismillah A',
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16),
@@ -39,12 +39,25 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const Text(
-              'Semoga aslabnya makin jago coding dan sukses selalu!',
+              'Semoga aslabnya naik gaji dan sejahtera hidupnya',
               style: TextStyle(fontSize: 16),
             ),
             const Spacer(),
             ElevatedButton(
-              onPressed: _authController.logout,
+              onPressed: () {
+                Get.defaultDialog(
+                  title: 'Konfirmasi Logout',
+                  middleText: 'Apakah Anda yakin ingin keluar?',
+                  textConfirm: 'Ya',
+                  textCancel: 'Batal',
+                  confirmTextColor: Colors.white,
+                  buttonColor: Colors.red,
+                  cancelTextColor: Colors.red,
+                  onConfirm: () {
+                    _authController.logout();
+                  },
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
