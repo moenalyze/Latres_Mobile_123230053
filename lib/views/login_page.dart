@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
                 const Icon(
                   Icons.live_tv_rounded,
                   size: 120,
-                  color: Colors.deepPurpleAccent,
+                  color: Colors.pink,
                 ),
                 const SizedBox(height: 24),
                 const Text(
@@ -28,56 +28,56 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Colors.pink,
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   'Sign in to continue',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.grey[400],
+                    color: Colors.black54,
                   ),
                 ),
                 const SizedBox(height: 48),
                 TextField(
                   controller: _usernameController,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.black87),
                   decoration: InputDecoration(
                     labelText: 'Username',
-                    labelStyle: TextStyle(color: Colors.grey[400]),
-                    prefixIcon: const Icon(Icons.person_outline, color: Colors.deepPurpleAccent),
+                    labelStyle: const TextStyle(color: Colors.black54),
+                    prefixIcon: const Icon(Icons.person_outline, color: Colors.pink),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.grey[800]!),
+                      borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.deepPurpleAccent, width: 2),
+                      borderSide: const BorderSide(color: Colors.pink, width: 2),
                     ),
                     filled: true,
-                    fillColor: const Color(0xFF1E1E1E),
+                    fillColor: Colors.pink.withOpacity(0.05),
                   ),
                 ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: _passwordController,
                   obscureText: true,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.black87),
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle: TextStyle(color: Colors.grey[400]),
-                    prefixIcon: const Icon(Icons.lock_outline, color: Colors.deepPurpleAccent),
+                    labelStyle: const TextStyle(color: Colors.black54),
+                    prefixIcon: const Icon(Icons.lock_outline, color: Colors.pink),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.grey[800]!),
+                      borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.deepPurpleAccent, width: 2),
+                      borderSide: const BorderSide(color: Colors.pink, width: 2),
                     ),
                     filled: true,
-                    fillColor: const Color(0xFF1E1E1E),
+                    fillColor: Colors.pink.withOpacity(0.05),
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurpleAccent,
+                      backgroundColor: Colors.pink,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -104,6 +104,26 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Don\'t have an account? ',
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                    GestureDetector(
+                      onTap: () => Get.toNamed('/register'),
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          color: Colors.pink,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

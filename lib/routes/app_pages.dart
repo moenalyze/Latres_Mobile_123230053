@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import '../routes/app_routes.dart';
 import '../views/login_page.dart';
+import '../views/register_page.dart';
 import '../views/main_page.dart';
 import '../views/detail_page.dart';
 
@@ -9,6 +10,10 @@ class AppPages {
     GetPage(
       name: Routes.LOGIN,
       page: () => LoginPage(),
+    ),
+    GetPage(
+      name: Routes.REGISTER,
+      page: () => RegisterPage(),
     ),
     GetPage(
       name: Routes.MAIN,

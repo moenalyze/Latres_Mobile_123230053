@@ -18,21 +18,50 @@ class AuthController extends GetxController {
   Future<void> checkLoginStatus() async {
     final prefs = await SharedPreferences.getInstance();
     _isLoggedIn.value = prefs.getBool('isLoggedIn') ?? false;
-    _username.value = prefs.getString('username') ?? '';
+    _username.value = prefs.getString('auth_logged_in_user') ?? '';
     
     if (_isLoggedIn.value) {
       Get.offAllNamed(Routes.MAIN);
     }
   }
 
+  Future<String?> register(String username, String password, String confirmPassword) async {
+    if (username.trim().isEmpty) return 'Username tidak boleh kosong.';
+    if (password.isEmpty) return 'Password tidak boleh kosong.';
+    if (password.length < 6) return 'Password minimal 6 karakter.';
+    if (password != confirmPassword) return 'Konfirmasi password tidak cocok.';
+
+    final prefs = await SharedPreferences.getInstance();
+    final existingUser = prefs.getString('auth_username');
+    if (existingUser != null && existingUser == username.trim()) {
+      return 'Username sudah terdaftar. Silakan gunakan username lain.';
+    }
+
+    await prefs.setString('auth_username', username.trim());
+    await prefs.setString('auth_password', password);
+    return null;
+  }
+
   Future<void> login(String username, String password) async {
-    if (username.isNotEmpty && password.isNotEmpty) {
+    if (username.trim().isNotEmpty && password.isNotEmpty) {
       final prefs = await SharedPreferences.getInstance();
+      final savedUsername = prefs.getString('auth_username');
+      final savedPassword = prefs.getString('auth_password');
+
+      if (savedUsername == null || savedPassword == null) {
+        Get.snackbar('Error', 'Akun tidak ditemukan. Silakan daftar terlebih dahulu.');
+        return;
+      }
+      if (savedUsername != username.trim() || savedPassword != password) {
+        Get.snackbar('Error', 'Username atau password salah.');
+        return;
+      }
+
       await prefs.setBool('isLoggedIn', true);
-      await prefs.setString('username', username);
+      await prefs.setString('auth_logged_in_user', username.trim());
       
       _isLoggedIn.value = true;
-      _username.value = username;
+      _username.value = username.trim();
       
       Get.offAllNamed(Routes.MAIN);
     } else {
@@ -42,7 +71,8 @@ class AuthController extends GetxController {
 
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+    await prefs.remove('isLoggedIn');
+    await prefs.remove('auth_logged_in_user');
     
     _isLoggedIn.value = false;
     _username.value = '';
